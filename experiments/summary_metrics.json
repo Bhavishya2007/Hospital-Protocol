@@ -1,0 +1,21 @@
+{
+  "total_queries": 20,
+  "baseline": {
+    "authoritative_accuracy": 55.0,
+    "citation_accuracy": 50.0,
+    "draft_selection_error_rate": 5.0,
+    "unauthorized_source_rate": 15.0
+  },
+  "resolver": {
+    "authoritative_accuracy": 100.0,
+    "citation_accuracy": 85.0,
+    "draft_selection_error_rate": 0.0,
+    "unauthorized_source_rate": 0.0
+  },
+  "event_chaos": {
+    "duplicate_idempotency_pass": true,
+    "out_of_order_recovery_pass": true,
+    "delayed_approval_transition_pass": true,
+    "event_recovery_rate": 100.0
+  }
+}

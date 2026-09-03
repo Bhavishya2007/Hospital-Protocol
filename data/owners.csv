@@ -1,0 +1,12 @@
+owner_id,department,role,authority_level,active
+OWNER_NURSING,Nursing,Director of Nursing & Patient Safety,1.0,True
+OWNER_INF_CTRL,Infection Control,Hospital Epidemiologist & Chair,1.0,True
+OWNER_EMERGENCY,Emergency Medicine,Chief of Emergency Medicine,1.0,True
+OWNER_PEDIATRICS,Pediatrics,Chief of Pediatric Services,1.0,True
+OWNER_SURGERY,Surgery,Chair of Surgical Services,1.0,True
+OWNER_PHARMACY,Pharmacy,Director of Pharmacy Services,1.0,True
+OWNER_ICU,Intensive Care Unit,Director of Critical Care,1.0,True
+OWNER_ADMIN,Hospital Administration,Chief Operating Officer,1.0,True
+OWNER_FACILITIES,Facilities,Facilities Lead,0.2,True
+OWNER_IT_SUPPORT,IT Support,IT Systems Admin,0.0,True
+OWNER_UNKNOWN,Unknown,Unverified Contributor,0.0,False

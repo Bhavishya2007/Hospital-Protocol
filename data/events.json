@@ -1,0 +1,258 @@
+[
+  {
+    "event_id": "EVT-1001",
+    "timestamp": "2024-01-01T08:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-MED-001",
+    "version": "1.0",
+    "department": "Nursing",
+    "owner_id": "OWNER_NURSING",
+    "title": "Medication Administration Protocol"
+  },
+  {
+    "event_id": "EVT-1002",
+    "timestamp": "2024-01-10T09:00:00Z",
+    "type": "DOCUMENT_APPROVED",
+    "document_id": "DOC-MED-001",
+    "version": "1.0",
+    "approval_id": "APP-001",
+    "approver_id": "USER-GOV-01",
+    "approval_role": "Clinical Governance"
+  },
+  {
+    "event_id": "EVT-1003",
+    "timestamp": "2025-06-15T10:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-MED-002",
+    "version": "2.0",
+    "department": "Nursing",
+    "owner_id": "OWNER_NURSING",
+    "title": "Medication Administration Protocol"
+  },
+  {
+    "event_id": "EVT-1004",
+    "timestamp": "2025-06-25T14:30:00Z",
+    "type": "DOCUMENT_APPROVED",
+    "document_id": "DOC-MED-002",
+    "version": "2.0",
+    "approval_id": "APP-002",
+    "approver_id": "USER-GOV-01",
+    "approval_role": "Clinical Governance"
+  },
+  {
+    "event_id": "EVT-1005",
+    "timestamp": "2025-07-01T00:00:00Z",
+    "type": "DOCUMENT_SUPERSEDED",
+    "document_id": "DOC-MED-001",
+    "version": "1.0",
+    "superseded_by": "DOC-MED-002"
+  },
+  {
+    "event_id": "EVT-1006",
+    "timestamp": "2026-08-15T10:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-MED-003",
+    "version": "3.0",
+    "department": "Nursing",
+    "owner_id": "OWNER_NURSING",
+    "title": "Medication Administration Protocol"
+  },
+  {
+    "event_id": "EVT-1007",
+    "timestamp": "2026-08-20T11:15:00Z",
+    "type": "DOCUMENT_APPROVED",
+    "document_id": "DOC-MED-003",
+    "version": "3.0",
+    "approval_id": "APP-003",
+    "approver_id": "USER-GOV-02",
+    "approval_role": "Clinical Governance"
+  },
+  {
+    "event_id": "EVT-1008",
+    "timestamp": "2026-08-25T09:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-MED-004",
+    "version": "3.1",
+    "department": "Nursing",
+    "owner_id": "OWNER_NURSING",
+    "title": "Medication Administration Protocol"
+  },
+  {
+    "event_id": "EVT-1009",
+    "timestamp": "2026-08-29T16:45:00Z",
+    "type": "DOCUMENT_APPROVED",
+    "document_id": "DOC-MED-004",
+    "version": "3.1",
+    "approval_id": "APP-004",
+    "approver_id": "USER-CMO-01",
+    "approval_role": "Chief Medical Officer"
+  },
+  {
+    "event_id": "EVT-1010",
+    "timestamp": "2026-09-01T00:00:00Z",
+    "type": "DOCUMENT_SUPERSEDED",
+    "document_id": "DOC-MED-003",
+    "version": "3.0",
+    "superseded_by": "DOC-MED-004"
+  },
+  {
+    "event_id": "EVT-1011",
+    "timestamp": "2026-09-02T10:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-MED-005",
+    "version": "4.0",
+    "department": "Nursing",
+    "owner_id": "OWNER_NURSING",
+    "title": "Medication Administration Protocol",
+    "status": "Draft"
+  },
+  {
+    "event_id": "EVT-1012",
+    "timestamp": "2026-09-01T08:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-MED-006",
+    "version": "4.0",
+    "department": "Facilities",
+    "owner_id": "OWNER_FACILITIES",
+    "title": "Medication Administration Protocol",
+    "status": "Approved"
+  },
+  {
+    "event_id": "EVT-2001",
+    "timestamp": "2024-02-01T08:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-INF-001",
+    "version": "1.0",
+    "department": "Infection Control",
+    "owner_id": "OWNER_INF_CTRL",
+    "title": "Infection Prevention & PPE Protocol"
+  },
+  {
+    "event_id": "EVT-2002",
+    "timestamp": "2024-02-20T10:00:00Z",
+    "type": "DOCUMENT_APPROVED",
+    "document_id": "DOC-INF-001",
+    "version": "1.0",
+    "approval_id": "APP-010",
+    "approver_id": "USER-GOV-01",
+    "approval_role": "Clinical Governance"
+  },
+  {
+    "event_id": "EVT-2003",
+    "timestamp": "2025-12-10T09:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-INF-002",
+    "version": "2.0",
+    "department": "Infection Control",
+    "owner_id": "OWNER_INF_CTRL",
+    "title": "Infection Prevention & PPE Protocol"
+  },
+  {
+    "event_id": "EVT-2004",
+    "timestamp": "2025-12-20T08:30:00Z",
+    "type": "DOCUMENT_APPROVED",
+    "document_id": "DOC-INF-002",
+    "version": "2.0",
+    "approval_id": "APP-011",
+    "approver_id": "USER-INF-01",
+    "approval_role": "Infection Control Committee Chair"
+  },
+  {
+    "event_id": "EVT-2005",
+    "timestamp": "2026-08-20T11:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-INF-003",
+    "version": "2.1",
+    "department": "Infection Control",
+    "owner_id": "OWNER_INF_CTRL",
+    "title": "Infection Prevention & PPE Protocol"
+  },
+  {
+    "event_id": "EVT-2006",
+    "timestamp": "2026-08-25T15:00:00Z",
+    "type": "DOCUMENT_APPROVED",
+    "document_id": "DOC-INF-003",
+    "version": "2.1",
+    "approval_id": "APP-012",
+    "approver_id": "USER-CMO-01",
+    "approval_role": "Chief Medical Officer"
+  },
+  {
+    "event_id": "EVT-2007",
+    "timestamp": "2026-09-01T00:00:00Z",
+    "type": "DOCUMENT_SUPERSEDED",
+    "document_id": "DOC-INF-002",
+    "version": "2.0",
+    "superseded_by": "DOC-INF-003"
+  },
+  {
+    "event_id": "EVT-2008",
+    "timestamp": "2026-09-02T09:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-INF-004",
+    "version": "3.0",
+    "department": "Infection Control",
+    "owner_id": "OWNER_INF_CTRL",
+    "title": "Infection Prevention & PPE Protocol",
+    "status": "Draft"
+  },
+  {
+    "event_id": "EVT-3001",
+    "timestamp": "2025-01-01T09:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-CPR-001",
+    "version": "3.0",
+    "department": "Emergency Medicine",
+    "owner_id": "OWNER_EMERGENCY",
+    "title": "Adult Resuscitation & Code Blue Protocol"
+  },
+  {
+    "event_id": "EVT-3002",
+    "timestamp": "2025-01-10T10:00:00Z",
+    "type": "DOCUMENT_APPROVED",
+    "document_id": "DOC-CPR-001",
+    "version": "3.0",
+    "approval_id": "APP-020",
+    "approver_id": "USER-GOV-01",
+    "approval_role": "Clinical Governance"
+  },
+  {
+    "event_id": "EVT-3003",
+    "timestamp": "2026-05-15T11:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-CPR-002",
+    "version": "4.0",
+    "department": "Emergency Medicine",
+    "owner_id": "OWNER_EMERGENCY",
+    "title": "Adult Resuscitation & Code Blue Protocol"
+  },
+  {
+    "event_id": "EVT-3004",
+    "timestamp": "2026-05-25T17:00:00Z",
+    "type": "DOCUMENT_APPROVED",
+    "document_id": "DOC-CPR-002",
+    "version": "4.0",
+    "approval_id": "APP-021",
+    "approver_id": "USER-CMO-01",
+    "approval_role": "Chief Medical Officer"
+  },
+  {
+    "event_id": "EVT-3005",
+    "timestamp": "2026-06-01T00:00:00Z",
+    "type": "DOCUMENT_SUPERSEDED",
+    "document_id": "DOC-CPR-001",
+    "version": "3.0",
+    "superseded_by": "DOC-CPR-002"
+  },
+  {
+    "event_id": "EVT-3006",
+    "timestamp": "2026-09-01T14:00:00Z",
+    "type": "DOCUMENT_UPLOADED",
+    "document_id": "DOC-CPR-003",
+    "version": "5.0",
+    "department": "Emergency Medicine",
+    "owner_id": "OWNER_EMERGENCY",
+    "title": "Adult Resuscitation & Code Blue Protocol",
+    "status": "Draft"
+  }
+]

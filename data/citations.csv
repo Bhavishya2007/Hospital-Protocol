@@ -1,0 +1,33 @@
+citation_id,document_id,version,section_number,section_title,snippet
+CIT-MED-31-01,DOC-MED-004,3.1,Section 2,Five Rights Verification,"Confirm right patient, right medication, right dose, right route, right time before every administration."
+CIT-MED-31-02,DOC-MED-004,3.1,Section 3,High-Alert Medications,"Dual independent electronic verification mandatory for intravenous insulin, unfractionated heparin, and IV push concentrated opioids."
+CIT-MED-31-03,DOC-MED-004,3.1,Section 4,Pediatric Titration & Dose Limits,Strict mg/kg weight-based calculations with automated EHR hard-stop dose limits and mandatory pharmacist verification.
+CIT-MED-31-04,DOC-MED-004,3.1,Section 5,Emergency Exception,Verbal orders permitted only during active resuscitation under attending physician command.
+CIT-INF-21-01,DOC-INF-003,2.1,Section 1,Universal Infection Control,Hand hygiene using hospital-approved chlorhexidine or 70% alcohol rubs prior to entering patient zones.
+CIT-INF-21-02,DOC-INF-003,2.1,Section 2,Enhanced Contact Isolation,Single-use gowns and nitrile gloves for enteric pathogens (C. difficile requires soap and water handwashing, not alcohol).
+CIT-INF-21-03,DOC-INF-003,2.1,Section 3,Airborne & Aerosol Precautions,Fitted N95 or PAPR respirator in verified negative-pressure airborne infection isolation rooms (AIIR).
+CIT-INF-21-04,DOC-INF-003,2.1,Section 4,Donning and Doffing Sequence,Dedicated ante-room doffing with hand hygiene between glove and gown removal.
+CIT-INF-21-05,DOC-INF-003,2.1,Section 5,Decontamination,Quaternary ammonium disinfectant wipes with 3-minute wet contact time for IT workstations, computer keyboards, and patient ward equipment.
+CIT-CPR-40-01,DOC-CPR-002,4.0,Section 1,Code Blue Activation,Immediate overhead paging and high-performance CPR team dispatch.
+CIT-CPR-40-02,DOC-CPR-002,4.0,Section 2,High-Quality Compressions,Rate 100-120 per minute, depth 5-6 cm with full recoil and CPR metronome feedback; rotate compressor every 2 minutes.
+CIT-CPR-40-03,DOC-CPR-002,4.0,Section 3,Biphasic Defibrillation,200 Joules synchronized biphasic shock for VF/pVT; resume CPR immediately.
+CIT-CPR-40-04,DOC-CPR-002,4.0,Section 4,Pharmacotherapy,Epinephrine 1 mg IV/IO every 3-5 minutes; Amiodarone 300 mg bolus for refractory VF/pVT followed by 150 mg second dose.
+CIT-CPR-40-05,DOC-CPR-002,4.0,Section 5,Post-Arrest Targeted Temperature Management,Maintain 32-36 degrees Celsius for comatose survivors.
+CIT-SEP-20-01,DOC-SEP-002,2.0,Section 1,Rapid Clinical Triage,Screen high-risk pediatric triggers: abnormal heart rate, delayed capillary refill > 3s, altered mental state, or purpuric rash.
+CIT-SEP-20-02,DOC-SEP-002,2.0,Section 2,Sepsis Golden Hour Bundle,Obtain blood cultures prior to broad-spectrum IV antibiotics; complete antibiotic administration within 60 minutes.
+CIT-SEP-20-03,DOC-SEP-002,2.0,Section 3,Volume Resuscitation,Balanced crystalloid bolus 10-20 mL/kg infused over 10 to 20 minutes, reassessing closely for hepatomegaly and crackles.
+CIT-SEP-20-04,DOC-SEP-002,2.0,Section 4,Vasoactive Support,Initiate early epinephrine infusion (0.05-0.3 mcg/kg/min) for fluid-refractory cold shock; norepinephrine for warm shock.
+CIT-SEP-20-05,DOC-SEP-002,2.0,Section 5,Escalation,Immediate pediatric ICU consultation upon second bolus requirement.
+CIT-SURG-20-01,DOC-SURG-002,2.0,Section 1,Sign In (Before induction),Patient confirms identity, site marking, and procedure; anesthesia safety check completed; pulse oximeter functioning.
+CIT-SURG-20-02,DOC-SURG-002,2.0,Section 2,Time Out (Immediately before incision),Entire surgical team halts activity; verbal confirmation of all team members, patient name, procedure, exact anatomical site, antibiotic prophylaxis within 60 mins.
+CIT-SURG-20-03,DOC-SURG-002,2.0,Section 3,Sign Out (Before leaving OR),Instrument, sponge, and needle counts verified; specimen labeled with two patient identifiers; post-op recovery plan reviewed.
+CIT-PHARM-20-01,DOC-PHARM-001,2.0,Section 1,Chain of Custody,All Schedule II and III controlled substances dispensed must be tracked via automated dispensing cabinets (ADC).
+CIT-PHARM-20-02,DOC-PHARM-001,2.0,Section 2,Dual Witness Disposal,Any unused narcotic portion must be immediately rendered unrecoverable using chemical denaturing solution in the presence of two licensed nurses or one pharmacist and one nurse.
+CIT-PHARM-20-03,DOC-PHARM-001,2.0,Section 3,Discrepancy Reporting,Unresolved counts exceeding 0.1 mL or 1 tablet must be escalated to Pharmacy Director and Hospital Security within 2 hours.
+CIT-ICU-12-01,DOC-ICU-001,1.2,Section 1,Daily Spontaneous Breathing Trial (SBT),Assess readiness criteria: PaO2/FiO2 > 150, PEEP <= 8 cmH2O, hemodynamically stable without active ischemia.
+CIT-ICU-12-02,DOC-ICU-001,1.2,Section 2,SBT Execution,30 to 120 minutes on pressure support <= 7 cmH2O or T-piece.
+CIT-ICU-12-03,DOC-ICU-001,1.2,Section 3,Failure Triggers,Respiratory rate > 35 bpm, SpO2 < 90%, heart rate change > 20%, diaphoresis or agitation.
+CIT-ICU-12-04,DOC-ICU-001,1.2,Section 4,Extubation Readiness,Adequate cough reflex, minimal endotracheal secretions, and negative cuff leak test if risk of laryngeal edema.
+CIT-VIS-10-01,DOC-VIS-001,1.0,Section 1,Visiting Hours,General inpatient wards open 08:00 to 20:00 daily.
+CIT-VIS-10-02,DOC-VIS-001,1.0,Section 2,Designated Caregivers,Up to two designated family caregivers permitted 24/7 bedside access in pediatric and ICU units.
+CIT-VIS-10-03,DOC-VIS-001,1.0,Section 3,Infection Precautions,Visitors must perform hand hygiene and wear surgical masks if symptomatic.

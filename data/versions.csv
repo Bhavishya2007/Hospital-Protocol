@@ -1,0 +1,22 @@
+protocol_family,document_id,version,status,effective_from,effective_until,supersedes_version,notes
+Medication Administration,DOC-MED-001,1.0,Superseded,2024-01-15,2025-06-30,,Initial paper-based EHR policy
+Medication Administration,DOC-MED-002,2.0,Superseded,2025-07-01,2026-08-31,1.0,Added mandatory barcode scanning and dual nurse signoff
+Medication Administration,DOC-MED-003,3.0,Superseded,2026-09-01,2026-09-01,2.0,Interim update for smart-pump wireless integration
+Medication Administration,DOC-MED-004,3.1,Approved,2026-09-01,,3.0,Current approved clinical standard with five rights and automated hard-stops
+Medication Administration,DOC-MED-005,4.0,Draft,2026-10-15,,3.1,Draft automated robotic dispensing proposal
+Infection Prevention,DOC-INF-001,1.0,Superseded,2024-03-01,2025-12-31,,Baseline hospital hygiene standard
+Infection Prevention,DOC-INF-002,2.0,Superseded,2026-01-01,2026-08-31,1.0,Standardized contact and airborne precautions
+Infection Prevention,DOC-INF-003,2.1,Approved,2026-09-01,,2.0,Current approved enhanced contact and airborne isolation protocols
+Infection Prevention,DOC-INF-004,3.0,Draft,2026-11-01,,2.1,Experimental ultraviolet decontamination proposal
+Adult Resuscitation,DOC-CPR-001,3.0,Superseded,2025-01-15,2026-05-31,,Monophasic CPR baseline
+Adult Resuscitation,DOC-CPR-002,4.0,Approved,2026-06-01,,3.0,Current approved high-performance CPR and biphasic defibrillation
+Adult Resuscitation,DOC-CPR-003,5.0,Draft,2026-12-01,,4.0,Draft early ECMO cannulation protocol
+Pediatric Sepsis,DOC-SEP-001,1.0,Superseded,2025-02-15,2026-07-31,,Initial pediatric triage bundle
+Pediatric Sepsis,DOC-SEP-002,2.0,Approved,2026-08-01,,1.0,Current approved golden hour bundle with vasoactive guidance
+Pediatric Sepsis,DOC-SEP-003,2.5,Pending,2026-09-15,,2.0,Pending review: point of care lactate additions
+Surgical Safety,DOC-SURG-001,1.5,Superseded,2025-09-01,2026-08-15,,Basic surgical timeout
+Surgical Safety,DOC-SURG-002,2.0,Approved,2026-08-16,,1.5,Current approved 3-phase surgical checklist (Sign In, Time Out, Sign Out)
+Controlled Substances,DOC-PHARM-001,2.0,Approved,2026-03-01,,1.0,Current approved dual-witness narcotic destruction protocol
+Controlled Substances,DOC-PHARM-002,3.0,Draft,2026-10-01,,2.0,Draft drone delivery
+Mechanical Ventilation,DOC-ICU-001,1.2,Approved,2026-04-01,,1.0,Current approved daily spontaneous breathing trial protocol
+Visitor Policy,DOC-VIS-001,1.0,Approved,2026-01-01,,0.9,Current hospital visitor guidelines

@@ -1,0 +1,20 @@
+approval_id,document_id,approver_id,approval_status,approved_at,approval_role
+APP-001,DOC-MED-001,USER-GOV-01,Approved,2024-01-10T09:00:00Z,Clinical Governance
+APP-002,DOC-MED-002,USER-GOV-01,Approved,2025-06-25T14:30:00Z,Clinical Governance
+APP-003,DOC-MED-003,USER-GOV-02,Approved,2026-08-20T11:15:00Z,Clinical Governance
+APP-004,DOC-MED-004,USER-CMO-01,Approved,2026-08-29T16:45:00Z,Chief Medical Officer
+APP-010,DOC-INF-001,USER-GOV-01,Approved,2024-02-20T10:00:00Z,Clinical Governance
+APP-011,DOC-INF-002,USER-INF-01,Approved,2025-12-20T08:30:00Z,Infection Control Committee Chair
+APP-012,DOC-INF-003,USER-CMO-01,Approved,2026-08-25T15:00:00Z,Chief Medical Officer
+APP-015,DOC-INF-005,USER-IT-99,Approved,2026-08-30T12:00:00Z,Helpdesk Technician
+APP-020,DOC-CPR-001,USER-GOV-01,Approved,2025-01-10T10:00:00Z,Clinical Governance
+APP-021,DOC-CPR-002,USER-CMO-01,Approved,2026-05-25T17:00:00Z,Chief Medical Officer
+APP-030,DOC-SEP-001,USER-PED-01,Approved,2025-02-10T09:30:00Z,Pediatrics Clinical Lead
+APP-031,DOC-SEP-002,USER-CMO-01,Approved,2026-07-28T14:00:00Z,Chief Medical Officer
+APP-032,DOC-SEP-003,USER-PED-01,Pending,2026-08-28T16:00:00Z,Pediatrics Clinical Lead
+APP-040,DOC-SURG-001,USER-SURG-01,Approved,2025-08-20T11:00:00Z,Surgical Safety Committee
+APP-041,DOC-SURG-002,USER-CMO-01,Approved,2026-08-14T15:30:00Z,Chief Medical Officer
+APP-050,DOC-PHARM-001,USER-PHARM-01,Approved,2026-02-25T13:00:00Z,Director of Pharmacy
+APP-060,DOC-ICU-001,USER-ICU-01,Approved,2026-03-28T10:30:00Z,ICU Medical Director
+APP-070,DOC-VIS-001,USER-ADMIN-01,Approved,2025-12-28T09:00:00Z,Hospital Director of Operations
+APP-099,DOC-MED-006,USER-FAC-01,Approved,2026-09-01T08:00:00Z,Facilities Supervisor
