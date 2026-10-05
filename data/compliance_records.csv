@@ -1,0 +1,11 @@
+compliance_id,document_id,audit_status,regulatory_body,compliance_score,last_audit_date,next_audit_due,mandatory_training_required,signoff_officer
+CMP-MED-004,DOC-MED-004,Compliant,The Joint Commission,1.00,2026-08-28,2027-08-28,True,Dr. Sarah Jenkins (Chief Medical Officer)
+CMP-MED-005,DOC-MED-005,Under Audit,FDA,0.30,2026-09-02,2026-10-15,True,Dr. Marcus Vance (IRB Director)
+CMP-MED-006,DOC-MED-006,Non-Compliant,CMS,0.00,2026-09-01,2026-09-15,False,Unauthorized (Facilities Maintenance)
+CMP-INF-003,DOC-INF-003,Compliant,CDC & Joint Commission,1.00,2026-08-22,2027-08-22,True,Dr. Aris Thorne (Infection Prevention Director)
+CMP-CPR-002,DOC-CPR-002,Compliant,American Heart Association,1.00,2026-05-20,2027-05-20,True,Dr. Elena Rostova (Resuscitation Chair)
+CMP-SEP-002,DOC-SEP-002,Compliant,AAP & CMS,0.95,2026-07-25,2027-07-25,True,Dr. Robert Vance (Pediatric Chief)
+CMP-SURG-002,DOC-SURG-002,Compliant,WHO & Joint Commission,1.00,2026-08-12,2027-08-12,True,Dr. Catherine Miller (Chief of Surgery)
+CMP-PHARM-001,DOC-PHARM-001,Compliant,DEA & State Board of Pharmacy,1.00,2026-02-20,2027-02-20,True,PharmD Michael Ross (Director of Pharmacy)
+CMP-ICU-001,DOC-ICU-001,Compliant,ATS & Joint Commission,0.98,2026-03-25,2027-03-25,True,Dr. Hannah Abbott (ICU Director)
+CMP-VIS-001,DOC-VIS-001,Compliant,State Department of Health,1.00,2025-12-20,2026-12-20,False,James Sterling (VP Operations)

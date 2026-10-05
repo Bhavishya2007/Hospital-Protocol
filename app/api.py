@@ -23,6 +23,8 @@ from src.models import (
     ResolutionResult,
     HITLReviewItem,
     CandidateScore,
+    StaffFeedback,
+    ComplianceRecord,
 )
 from src.data_loader import DataLoader
 from src.retrieval import CandidateRetriever, BaselineRetriever
@@ -62,6 +64,10 @@ class SystemContainer:
             self.state.add_owner(owner)
         for rule in self.loader.access_rules:
             self.state.set_access(rule.document_id, rule.role, rule.allowed)
+        for fb in self.loader.staff_feedback:
+            self.state.add_staff_feedback(fb)
+        for doc_id, comp in self.loader.compliance_by_doc.items():
+            self.state.set_compliance_record(comp)
 
         self.processor = EventProcessor(self.state)
         self.retriever = CandidateRetriever(self.state.get_all_documents())
@@ -294,3 +300,53 @@ def get_metrics():
 def list_documents():
     """Returns all current documents stored in the state manager."""
     return [doc.model_dump() for doc in container.state.get_all_documents()]
+
+
+@app.post("/api/feedback")
+def submit_feedback(fb: StaffFeedback):
+    """Submits structured staff feedback for a document."""
+    container.state.add_staff_feedback(fb)
+    summary = container.state.get_feedback_summary_for_doc(fb.document_id)
+    return {
+        "status": "SUCCESS",
+        "message": f"Staff feedback '{fb.feedback_id}' recorded for document '{fb.document_id}'.",
+        "feedback_id": fb.feedback_id,
+        "document_summary": summary,
+    }
+
+
+@app.get("/api/feedback")
+def get_feedback(document_id: Optional[str] = Query(None)):
+    """Retrieves staff feedback records, optionally filtered by document_id."""
+    if document_id:
+        records = container.state.get_feedback_for_document(document_id)
+        summary = container.state.get_feedback_summary_for_doc(document_id)
+        return {
+            "document_id": document_id,
+            "summary": summary,
+            "feedback": [fb.model_dump() for fb in records],
+        }
+    return {
+        "total_feedback": len(container.state.staff_feedback),
+        "feedback": [fb.model_dump() for fb in container.state.staff_feedback],
+    }
+
+
+@app.get("/api/compliance")
+def get_compliance(document_id: Optional[str] = Query(None)):
+    """Retrieves dedicated compliance records and regulatory audit status."""
+    if document_id:
+        rec = container.state.get_compliance_record(document_id)
+        if not rec:
+            raise HTTPException(status_code=404, detail=f"No compliance record found for '{document_id}'.")
+        return rec.model_dump()
+
+    records = list(container.state.compliance_records.values())
+    compliant_count = sum(1 for r in records if r.audit_status == "Compliant")
+    return {
+        "total_records": len(records),
+        "compliant_count": compliant_count,
+        "compliance_rate": round(compliant_count / max(len(records), 1), 4),
+        "records": [r.model_dump() for r in records],
+    }
+

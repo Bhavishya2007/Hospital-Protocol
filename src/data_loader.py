@@ -4,7 +4,16 @@ import os
 import csv
 import json
 from typing import Dict, List, Tuple, Optional
-from src.models import Document, Approval, Owner, AccessRule, Citation, ProtocolEvent
+from src.models import (
+    Document,
+    Approval,
+    Owner,
+    AccessRule,
+    Citation,
+    ProtocolEvent,
+    StaffFeedback,
+    ComplianceRecord,
+)
 
 
 def get_default_data_dir() -> str:
@@ -28,6 +37,10 @@ class DataLoader:
         self.citations: List[Citation] = []
         self.citations_by_doc: Dict[str, List[Citation]] = {}
         self.events: List[ProtocolEvent] = []
+        self.staff_feedback: List[StaffFeedback] = []
+        self.staff_feedback_by_doc: Dict[str, List[StaffFeedback]] = {}
+        self.compliance_records: List[ComplianceRecord] = []
+        self.compliance_by_doc: Dict[str, ComplianceRecord] = {}
 
     def load_all(self):
         """Loads all datasets from CSV and JSON files."""
@@ -37,6 +50,8 @@ class DataLoader:
         self.load_access_rules()
         self.load_citations()
         self.load_events()
+        self.load_staff_feedback()
+        self.load_compliance_records()
         return self
 
     def load_documents(self, filename: str = "documents.csv") -> List[Document]:
@@ -150,3 +165,53 @@ class DataLoader:
                 events.append(event)
         self.events = events
         return events
+
+    def load_staff_feedback(self, filename: str = "staff_feedback.csv") -> List[StaffFeedback]:
+        filepath = os.path.join(self.data_dir, filename)
+        feedback_items = []
+        if not os.path.exists(filepath):
+            return feedback_items
+        with open(filepath, mode="r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                fb = StaffFeedback(
+                    feedback_id=row["feedback_id"].strip(),
+                    document_id=row["document_id"].strip(),
+                    user_role=row["user_role"].strip(),
+                    shift=row["shift"].strip(),
+                    rating=int(row["rating"].strip()),
+                    feedback_category=row["feedback_category"].strip(),
+                    comment=row["comment"].strip(),
+                    timestamp=row["timestamp"].strip(),
+                    sentiment_score=float(row.get("sentiment_score", 0.5)),
+                    flag_for_review=row.get("flag_for_review", "False").strip().lower() in ("true", "1", "yes"),
+                )
+                feedback_items.append(fb)
+                self.staff_feedback_by_doc.setdefault(fb.document_id, []).append(fb)
+        self.staff_feedback = feedback_items
+        return feedback_items
+
+    def load_compliance_records(self, filename: str = "compliance_records.csv") -> List[ComplianceRecord]:
+        filepath = os.path.join(self.data_dir, filename)
+        records = []
+        if not os.path.exists(filepath):
+            return records
+        with open(filepath, mode="r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                rec = ComplianceRecord(
+                    compliance_id=row["compliance_id"].strip(),
+                    document_id=row["document_id"].strip(),
+                    audit_status=row["audit_status"].strip(),
+                    regulatory_body=row["regulatory_body"].strip(),
+                    compliance_score=float(row.get("compliance_score", 1.0)),
+                    last_audit_date=row["last_audit_date"].strip(),
+                    next_audit_due=row["next_audit_due"].strip(),
+                    mandatory_training_required=row.get("mandatory_training_required", "True").strip().lower() in ("true", "1", "yes"),
+                    signoff_officer=row["signoff_officer"].strip(),
+                )
+                records.append(rec)
+                self.compliance_by_doc[rec.document_id] = rec
+        self.compliance_records = records
+        return records
+

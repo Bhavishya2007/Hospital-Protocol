@@ -109,19 +109,21 @@ The repository includes a comprehensive synthetic dataset in `data/`:
 
 | File | Description | Records |
 | :--- | :--- | :---: |
-| `data/documents.csv` | Full protocol inventory (Title, Dept, Version, Content, Dates, Owner, Status, Supersedes) | 22 protocols |
-| `data/approvals.csv` | Clinical governance approval signoffs with approver IDs and timestamps | 18 approvals |
+| `data/documents.csv` | Full protocol inventory (Title, Dept, Version, Content, Dates, Owner, Status, Supersedes) | 24 protocols |
+| `data/approvals.csv` | Clinical governance approval signoffs with approver IDs and timestamps | 19 approvals |
 | `data/owners.csv` | Departmental ownership records with authority levels (1.0 = Primary, 0.0 = Unauthorized) | 8 departments |
 | `data/access_rules.csv` | Role-Based Access Control matrix (Nurse, Physician, Pharmacist, Clinical Admin, Visitor) | 116 rules |
 | `data/citations.csv` | Granular section-level clinical citations with verifiable snippets | 38 citations |
 | `data/events.json` | Protocol lifecycle event stream (Upload, Approval, Supersede, Deprecate) | 14 events |
 | `data/versions.csv` | Version lineage and supersession changelog | 18 versions |
+| `data/staff_feedback.csv` | Operational staff feedback records (ratings, categories, comments, safety flags) | 10 records |
+| `data/compliance_records.csv` | Formal regulatory compliance records (Joint Commission, FDA, CDC, audit status) | 10 audits |
 
 ---
 
 ## 5. Adversarial Failure Cases & Event Chaos Testing
 
-The resolver is validated against **6 realistic failure modes** and event stream disruptions:
+The resolver is validated against **8 realistic failure modes** and event stream disruptions:
 
 | Test Case | Scenario Description | Expected Invariant Behavior | Status |
 | :---: | :--- | :--- | :---: |
@@ -131,6 +133,8 @@ The resolver is validated against **6 realistic failure modes** and event stream
 | **Case 4** | **Delayed Approval Event** (v4 uploaded as Draft, approved later) | System serves v3 before approval event; immediately transitions to v4 upon approval | ✅ **PASS** |
 | **Case 5** | **Wrong Owner / Unauthorized Department** (Facilities v6.0 vs Nursing v5.0) | Facilities is recognized as unauthorized (0.0 score); Nursing v5.0 selected | ✅ **PASS** |
 | **Case 6** | **Unauthorized Document Access** (Visitor queries controlled pharmacy narcotics) | System blocks document; returns explicit `ACCESS_DENIED` status | ✅ **PASS** |
+| **Case 7** | **Structured Staff Feedback Safety Flagging** (Negative sentiment / safety flag) | Ingests feedback, aggregates usability ratings, flags for governance | ✅ **PASS** |
+| **Case 8** | **Non-Compliant Regulatory Status Gating** (Audit status Non-Compliant / low score) | Authority score gated to <= 0.30; non-compliant protocol blocked | ✅ **PASS** |
 
 ---
 
@@ -154,6 +158,9 @@ Evaluated across **20 clinical shift scenarios** spanning 8 hospital clinical do
 
 ```
 Hospital Protocol/
+├── .github/
+│   └── workflows/
+│       └── ci.yml             # GitHub Actions CI workflow (tests, eval, e2e demo)
 ├── data/
 │   ├── documents.csv          # Clinical protocol inventory
 │   ├── approvals.csv          # Governance approvals
@@ -161,7 +168,9 @@ Hospital Protocol/
 │   ├── access_rules.csv       # Role-based access matrix
 │   ├── citations.csv          # Verified clinical citations
 │   ├── events.json            # Protocol lifecycle event stream
-│   └── versions.csv           # Version lineage
+│   ├── versions.csv           # Version lineage
+│   ├── staff_feedback.csv     # Operational staff feedback records
+│   └── compliance_records.csv # Formal regulatory audit compliance records
 ├── src/
 │   ├── models.py              # Pydantic data schemas
 │   ├── data_loader.py         # CSV & JSON ingestion engine
@@ -174,8 +183,8 @@ Hospital Protocol/
 │   ├── rag.py                 # Grounded clinical response & citation generator
 │   └── evaluation.py          # 20-scenario quantitative benchmark engine
 ├── app/
-│   ├── api.py                 # FastAPI REST service
-│   └── streamlit_app.py       # Interactive clinical shift dashboard
+│   ├── api.py                 # FastAPI REST service (/api/resolve, /api/feedback, /api/compliance)
+│   └── streamlit_app.py       # Interactive clinical shift dashboard (4 tabs)
 ├── tests/
 │   ├── test_normal.py         # Normal clinical query tests
 │   ├── test_draft_vs_approved.py  # Test 1: Draft trap
@@ -183,7 +192,11 @@ Hospital Protocol/
 │   ├── test_out_of_order.py   # Test 3: Monotonic out-of-order recovery
 │   ├── test_delayed.py        # Test 4: Delayed approval lifecycle
 │   ├── test_wrong_owner.py    # Test 5: Unauthorized department rejection
-│   └── test_access.py         # Test 6: Access control denial
+│   ├── test_access.py         # Test 6: Access control denial
+│   ├── test_staff_feedback.py # Test 7: Staff feedback capture & safety flags
+│   └── test_compliance_records.py # Test 8: Compliance records & audit gating
+├── scripts/
+│   └── run_e2e_demo.py        # Automated end-to-end demo script
 ├── experiments/
 │   ├── baseline_results.csv   # Naive baseline evaluation run
 │   ├── resolver_results.csv   # Authoritative resolver evaluation run
@@ -191,7 +204,7 @@ Hospital Protocol/
 │   ├── summary_metrics.json   # Quantitative summary metrics
 │   └── evaluation_report.md   # Comprehensive clinical validation report
 ├── demo_script.md             # 3-minute video presentation script
-├── requirements.txt           # Project dependencies
+├── requirements.txt           # Explicitly pinned project dependencies
 └── README.md                  # System documentation
 ```
 
@@ -204,18 +217,19 @@ Hospital Protocol/
 # Clone repository and enter directory
 cd "Hospital Protocol"
 
-# Activate virtual environment
+# Create & activate Python virtual environment
+python3.13 -m venv .venv
 source .venv/bin/activate
 
-# Install dependencies
+# Install explicitly pinned dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Run Automated Unit Tests
+### 2. Run Automated Unit Test Suite
 ```bash
 pytest tests/ -v
 ```
-*Expected: 8 passed (100% pass rate).*
+*Expected: 12 passed (100% pass rate).*
 
 ### 3. Run Benchmark Evaluation Suite
 ```bash
@@ -223,22 +237,31 @@ python -m src.evaluation
 ```
 *Generates updated result CSVs and summary metrics in `experiments/`.*
 
-### 4. Launch the Interactive Web Prototype
+### 4. Run End-to-End Automated Demo Script
+```bash
+python scripts/run_e2e_demo.py
+```
+*Demonstrates ingestion, event handling, compliance auditing, staff feedback, and candidate resolution live.*
+
+### 5. Launch Interactive Web Prototype
 ```bash
 streamlit run app/streamlit_app.py --server.port 8501
 ```
 Open [http://localhost:8501](http://localhost:8501) to explore:
-- **Shift Query Assistant**: Test clinical queries across different shifts and roles.
-- **Baseline vs. Resolver Lab**: See why naive vector search fails and how the resolver protects patients.
-- **Event Chaos Simulator**: Inject duplicate, delayed, and out-of-order events live.
-- **Human-in-the-Loop Portal**: Review and resolve ambiguous protocol conflicts.
-- **Benchmarks & Audit Analytics**: Inspect the full 20-scenario evaluation results and error analysis.
+- **Clinical Assistant**: Shift query support with verified citations.
+- **Staff Feedback Portal**: Submit rating, feedback category, comments, and safety flags.
+- **Compliance Records Portal**: Dedicated view for Joint Commission, FDA, and CDC audit records.
+- **Baseline vs. Resolver Lab**: Direct comparison showing why naive vector search fails.
 
-### 5. Launch FastAPI REST Service (Optional)
+### 6. Launch FastAPI REST Service (Optional)
 ```bash
 uvicorn app.api:app --host 0.0.0.0 --port 8000 --reload
 ```
 Interactive Swagger docs available at [http://localhost:8000/docs](http://localhost:8000/docs).
+New REST Endpoints:
+- `POST /api/feedback`: Ingest staff feedback record.
+- `GET /api/feedback`: Query feedback records & document summary.
+- `GET /api/compliance`: Inspect compliance records & audit status.
 
 ---
 

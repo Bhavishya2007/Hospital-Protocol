@@ -9,9 +9,9 @@ Maintains an in-memory, reproducible state of:
 - Event history
 """
 
-from typing import Dict, List, Set, Tuple, Optional
+from typing import Dict, List, Set, Tuple, Optional, Any
 from copy import deepcopy
-from src.models import Document, Approval, Owner, AccessRule, ProtocolEvent
+from src.models import Document, Approval, Owner, AccessRule, ProtocolEvent, StaffFeedback, ComplianceRecord
 from src.ranking import parse_semver
 
 
@@ -23,6 +23,8 @@ class ProtocolStateManager:
         self.access_map: Dict[Tuple[str, str], bool] = {}
         self.processed_events: Set[str] = set()
         self.event_history: List[ProtocolEvent] = []
+        self.staff_feedback: List[StaffFeedback] = []
+        self.compliance_records: Dict[str, ComplianceRecord] = {}
 
     def clone(self) -> "ProtocolStateManager":
         """Creates an independent clone of the state manager for testing / simulation."""
@@ -33,6 +35,8 @@ class ProtocolStateManager:
         cloned.access_map = deepcopy(self.access_map)
         cloned.processed_events = set(self.processed_events)
         cloned.event_history = list(self.event_history)
+        cloned.staff_feedback = deepcopy(self.staff_feedback)
+        cloned.compliance_records = deepcopy(self.compliance_records)
         return cloned
 
     def is_event_processed(self, event_id: str) -> bool:
@@ -52,6 +56,33 @@ class ProtocolStateManager:
 
     def set_access(self, doc_id: str, role: str, allowed: bool):
         self.access_map[(doc_id, role)] = allowed
+
+    def add_staff_feedback(self, fb: StaffFeedback):
+        self.staff_feedback.append(fb)
+
+    def get_feedback_for_document(self, doc_id: str) -> List[StaffFeedback]:
+        return [fb for fb in self.staff_feedback if fb.document_id == doc_id]
+
+    def get_feedback_summary_for_doc(self, doc_id: str) -> Dict[str, Any]:
+        items = self.get_feedback_for_document(doc_id)
+        if not items:
+            return {"total_reviews": 0, "avg_rating": 0.0, "avg_sentiment": 0.0, "flagged_count": 0}
+        avg_rating = sum(fb.rating for fb in items) / len(items)
+        avg_sentiment = sum(fb.sentiment_score for fb in items) / len(items)
+        flagged = sum(1 for fb in items if fb.flag_for_review)
+        return {
+            "total_reviews": len(items),
+            "avg_rating": round(avg_rating, 2),
+            "avg_sentiment": round(avg_sentiment, 2),
+            "flagged_count": flagged,
+        }
+
+    def set_compliance_record(self, record: ComplianceRecord):
+        self.compliance_records[record.document_id] = record
+
+    def get_compliance_record(self, doc_id: str) -> Optional[ComplianceRecord]:
+        return self.compliance_records.get(doc_id)
+
 
     def get_document(self, doc_id: str) -> Optional[Document]:
         return self.documents.get(doc_id)

@@ -60,6 +60,7 @@ class AuthoritativeResolver:
             owners_by_id=self.state_manager.owners,
             access_map=self.state_manager.access_map,
             user_role=user_role,
+            compliance_by_doc=self.state_manager.compliance_records,
         )
 
         top_cand = ranked_scores[0]

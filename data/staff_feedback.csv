@@ -1,0 +1,11 @@
+feedback_id,document_id,user_role,shift,rating,feedback_category,comment,timestamp,sentiment_score,flag_for_review
+FB-001,DOC-MED-004,Nurse,Night Shift,5,Clarity,Section 3 high-alert double verification workflow is crystal clear and saved a potential insulin dosing error on ward 4B.,2026-09-10T02:15:00,0.95,False
+FB-002,DOC-MED-004,Pharmacist,Day Shift,4,Usability,Pharmacist mandatory signoff requirement in Section 4 works well with our EHR order queue.,2026-09-12T10:30:00,0.85,False
+FB-003,DOC-INF-003,Nurse,Evening Shift,5,Safety,Chlorhexidine hand hygiene instructions in Section 1 are very clear for non-enteric rooms.,2026-09-14T18:45:00,0.90,False
+FB-004,DOC-INF-003,Infection Control Specialist,Day Shift,5,Compliance,Wet contact time of 3 mins for ammonium wipes in Section 5 strictly meets Joint Commission standard.,2026-09-15T09:20:00,0.92,False
+FB-005,DOC-CPR-002,Physician,Night Shift,5,Usability,Biphasic 200J shock guidance and metronome compression rate eliminated confusion during cardiac arrest call.,2026-09-16T03:10:00,0.94,False
+FB-006,DOC-SEP-002,Physician,Day Shift,4,Safety,1-hour antibiotic golden hour bundle in Section 2 is effective for pediatric triage.,2026-09-18T11:05:00,0.88,False
+FB-007,DOC-PHARM-001,Pharmacist,Day Shift,4,Compliance,Dual witness waste protocol in Section 2 is clear for ADC narcotics disposal.,2026-09-20T14:50:00,0.82,False
+FB-008,DOC-SURG-002,Surgeon,Day Shift,5,Clarity,Surgical timeout checklist in Section 2 works seamlessly during pre-incision pause.,2026-09-22T08:15:00,0.96,False
+FB-009,DOC-MED-005,Nurse,Night Shift,1,Safety,Draft v4.0 specifies robotic dispensing without pharmacist check - dangerous if used accidentally!,2026-09-03T01:00:00,0.05,True
+FB-010,DOC-CPR-003,Physician,Night Shift,1,Outdated Info,Draft v5.0 CPR recommends ECMO within 5 mins without chest compressions - high risk draft!,2026-09-02T22:30:00,0.02,True

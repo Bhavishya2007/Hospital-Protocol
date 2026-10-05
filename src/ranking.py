@@ -15,7 +15,7 @@ Enforces strict clinical governance invariants:
 4. Access denied documents are flagged and cannot be presented to unauthorized roles.
 """
 
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from datetime import datetime, date
 import re
 from src.models import Document, Owner, Approval, CandidateScore
@@ -141,6 +141,7 @@ def rank_candidates(
     access_map: Dict[Tuple[str, str], bool],
     user_role: str,
     ref_date: date = REFERENCE_DATE,
+    compliance_by_doc: Optional[Dict[str, Any]] = None,
 ) -> List[CandidateScore]:
     """Evaluates and ranks all candidates using the deterministic multi-factor function."""
     if not candidates:
@@ -170,6 +171,20 @@ def rank_candidates(
         acc_score = 1.0 if is_allowed else 0.0
         acc_desc = "Role access granted" if is_allowed else f"Access denied for role {user_role}"
 
+        # Compliance record check
+        comp_rec = compliance_by_doc.get(doc.document_id) if compliance_by_doc else None
+        is_non_compliant = False
+        status_val = ""
+        if comp_rec:
+            if isinstance(comp_rec, dict):
+                status_val = str(comp_rec.get("audit_status", ""))
+                score_val = float(comp_rec.get("compliance_score", 1.0))
+            else:
+                status_val = str(getattr(comp_rec, "audit_status", ""))
+                score_val = float(getattr(comp_rec, "compliance_score", 1.0))
+            if status_val.lower() == "non-compliant" or score_val < 0.5:
+                is_non_compliant = True
+
         # Raw authority calculation
         raw_authority = (
             WEIGHT_APPROVAL * app_score
@@ -179,11 +194,13 @@ def rank_candidates(
             + WEIGHT_ACCESS * acc_score
         )
 
-        # CRITICAL INVARIANT: Draft or Superseded must never beat an approved document!
-        # If document is not approved, cap authority score strictly at 0.35.
+        # CRITICAL INVARIANT: Draft, Superseded, or Non-Compliant must never beat an approved valid document!
         if doc.status.strip().title() != "Approved":
             authority_score = min(raw_authority, 0.35)
             authority_desc = f"GATED (non-approved status '{doc.status}' caps score to {authority_score:.2f})"
+        elif is_non_compliant:
+            authority_score = min(raw_authority, 0.30)
+            authority_desc = f"GATED (non-compliant regulatory status '{status_val}')"
         elif own_score == 0.0:
             authority_score = min(raw_authority, 0.30)
             authority_desc = f"GATED (unauthorized owner '{doc.owner_id}')"

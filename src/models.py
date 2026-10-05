@@ -132,3 +132,29 @@ class HITLReviewItem(BaseModel):
     resolved_by: Optional[str] = None
     resolved_doc_id: Optional[str] = None
     notes: Optional[str] = None
+
+
+class StaffFeedback(BaseModel):
+    feedback_id: str
+    document_id: str
+    user_role: str
+    shift: str
+    rating: int = Field(..., ge=1, le=5)
+    feedback_category: str = "Clarity"  # Clarity, Usability, Safety, Outdated Info, Formatting
+    comment: str
+    timestamp: str
+    sentiment_score: float = 0.5
+    flag_for_review: bool = False
+
+
+class ComplianceRecord(BaseModel):
+    compliance_id: str
+    document_id: str
+    audit_status: str  # Compliant, Under Audit, Non-Compliant, Pending Renewal
+    regulatory_body: str
+    compliance_score: float = Field(1.0, ge=0.0, le=1.0)
+    last_audit_date: str
+    next_audit_due: str
+    mandatory_training_required: bool = True
+    signoff_officer: str
+
